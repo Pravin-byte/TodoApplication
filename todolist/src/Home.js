@@ -30,6 +30,7 @@ function Home() {
         .catch(err => console.log(err));
     }
   };
+  
 
   const handleEdit = (id, task) => {
     setIsEditing(true);
