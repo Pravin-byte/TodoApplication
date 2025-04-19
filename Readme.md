@@ -95,3 +95,8 @@ TodoList/
 - **Backend:** Node.js, Express.js
 - **Database:** MongoDB
 - **Other:** dotenv for environment variable management
+
+## deployment on Render
+```bash
+https://todoapplication-3-fcot.onrender.com
+```
