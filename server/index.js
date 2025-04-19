@@ -67,7 +67,7 @@ app.put('/edit/:id', (req, res) => {
 });
 
 if (process.env.NODE_ENV==='production'){
-  app.use(express.static(Path.join(__dirname ,"/todolist/dist")));
+  app.use(express.static(path.join(__dirname ,"/todolist/dist")));
   app.get("*",(req,res)=>{
     res.sendFile(path.resolve(__dirname,"todolist","dist","index.html"))
   });
