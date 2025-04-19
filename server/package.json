@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "npm install && npm install --prefix todolist && npm run build --prefix todolist",
+    "build": "npm install --prefix server && npm install --prefix todolist && npm run build --prefix todolist",
     "start": "nodemon index.js",
     "dev": "nodemon index.js"
   },
