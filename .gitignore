@@ -20,5 +20,4 @@ Thumbs.db
 .idea/
 
 # Dependency lock files (optional)
-package-lock.json
 yarn.lock
