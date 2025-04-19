@@ -66,12 +66,15 @@ app.put('/edit/:id', (req, res) => {
     .catch(err => res.status(500).json(err));
 });
 
-if (process.env.NODE_ENV==='production'){
-  app.use(express.static(path.join(__dirname ,"/todolist/dist")));
-  app.get("/*",(req,res)=>{
-    res.sendFile(path.resolve(__dirname,"todolist","dist","index.html"))
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'todolist', 'build')));
+
+  // Serve index.html for all other routes
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'todolist', 'build', 'index.html'));
   });
 }
+
 const Port = process.env.PORT || 5000 ;
 
 app.listen( Port , () => {
