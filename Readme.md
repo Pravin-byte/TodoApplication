@@ -1,4 +1,3 @@
-Thanks for the clarification! Here’s an updated version of the `README.md` with the correct folder structure:
 
 ```markdown
 # TodoList Full Stack Application
