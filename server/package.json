@@ -21,4 +21,8 @@
   "devDependencies": {
     "nodemon": "^3.1.9"
   }
+  "resolutions": {
+  "path-to-regexp": "6.2.1"
+}
+
 }
