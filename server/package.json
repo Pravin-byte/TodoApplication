@@ -6,6 +6,7 @@
     "build": "npm install && cd ../todolist && npm install && npm run build",
     "start": "node index.js",
     "dev": "nodemon index.js"
+    "preinstall": "npx npm-force-resolutions"
   },
   "keywords": [],
   "author": "",
