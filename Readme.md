@@ -5,14 +5,6 @@ Thanks for the clarification! Here’s an updated version of the `README.md` wit
 
 A full-stack Todo list application built with the MERN stack (MongoDB, Express, React, Node.js).
 
-## Table of Contents
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [Folder Structure](#folder-structure)
-- [Technologies Used](#technologies-used)
-- [Contributing](#contributing)
-
 ## Installation
 
 To get started, clone the repository and install the dependencies for both the frontend and backend.
@@ -104,14 +96,3 @@ TodoList/
 - **Backend:** Node.js, Express.js
 - **Database:** MongoDB
 - **Other:** dotenv for environment variable management
-
-## Contributing
-
-If you would like to contribute to this project, follow these steps:
-
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature-name`).
-3. Commit your changes (`git commit -am 'Add feature'`).
-4. Push to your branch (`git push origin feature-name`).
-5. Open a pull request.
-
