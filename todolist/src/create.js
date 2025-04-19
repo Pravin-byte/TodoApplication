@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
-function Create({ isEditing, editId, editTask, setIsEditing, setEditId, setEditTask }) {
+function Create({ isEditing, editId, editTask, setIsEditing, setEditId, setEditTask,target }) {
   const [task, setTask] = useState('');
   const [description,setDescription]=useState('');
 
@@ -17,14 +17,14 @@ function Create({ isEditing, editId, editTask, setIsEditing, setEditId, setEditT
 
   const handleSubmit = () => {
     if (!task.trim()) return;
-    axios.post('http://localhost:3001/add', { task,description })
+    axios.post(`${target}/add`, { task,description })
       .then(() => window.location.reload())
       .catch(err => console.error(err));
   };
 
   const handleSave = () => {
     if (!task.trim()) return;
-    axios.put(`http://localhost:3001/edit/${editId}`, { task,description })
+    axios.put(`${target}/edit/${editId}`, { task,description })
       .then(() => {
         setIsEditing(false);
         setEditId('');

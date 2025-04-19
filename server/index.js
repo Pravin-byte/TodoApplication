@@ -9,33 +9,27 @@ const TodoModel = require('./Modules/userModule');
 app.use(cors());
 app.use(express.json());
 
-
 require('dotenv').config();  
-
 
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => {
     console.error('Failed to connect to MongoDB:', err);
-    // Log the error details for better debugging
     console.error('Error details:', err.message);
     console.error('Error code:', err.code);
     console.error('Error stack:', err.stack);
   });
 
-
-
 app.post('/add', (req, res) => {
-  const { task , description } = req.body;
-
-  TodoModel.create({ task ,description })
+  const { task, description } = req.body;
+  TodoModel.create({ task, description })
     .then(result => res.status(201).json(result))
     .catch(err => res.status(500).json({ error: err.message }));
 });
 
 app.get('/get', (req, res) => {
   TodoModel.find()
-    .then(result => res.status(200).json(result)) // return the actual result
+    .then(result => res.status(200).json(result))
     .catch(err => res.status(500).json({ error: err.message }));
 });
 
@@ -45,24 +39,30 @@ app.put('/update/:id', (req, res) => {
 
   TodoModel.findByIdAndUpdate(id, { done: true })
     .then(result => res.json(result))
-    .catch(err => res.json(err));
+    .catch(err => res.status(500).json(err));
 });
 
-// Delete route (use DELETE method)
+// Delete route
 app.delete('/delete/:id', (req, res) => {
   const { id } = req.params;
 
   TodoModel.findByIdAndDelete(id)
     .then(result => res.json(result))
-    .catch(err => res.json(err));
+    .catch(err => res.status(500).json(err));
 });
 
+// Edit route
 app.put('/edit/:id', (req, res) => {
   const { id } = req.params;
-  const { task , description } = req.body;
+  const { task, description } = req.body;
 
-  TodoModel.findByIdAndUpdate(id, { task ,description })
-    .then(result => res.json(result))
+  TodoModel.findByIdAndUpdate(id, { task, description }, { new: true })  // Adding { new: true } to return the updated document
+    .then(result => {
+      if (!result) {
+        return res.status(404).json({ error: 'Todo not found' });
+      }
+      res.json(result);
+    })
     .catch(err => res.status(500).json(err));
 });
 
@@ -74,11 +74,10 @@ if (process.env.NODE_ENV === 'production') {
   app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, '../todolist/build/index.html'));
   });
-
 }
 
-const Port = process.env.PORT || 5000 ;
+const Port = process.env.PORT || 5000;
 
-app.listen( Port , () => {
+app.listen(Port, () => {
   console.log(`Server running on port ${Port}`);
 });

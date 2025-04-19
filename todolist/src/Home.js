@@ -10,8 +10,10 @@ function Home() {
   const [editTask, setEditTask] = useState('');
   const [editId, setEditId] = useState('');
 
+  const target = 'https://todoapplication-3-fcot.onrender.com';
+
   useEffect(() => {
-    axios.get('http://localhost:3001/get')
+    axios.get(`${target}/get`)
       .then(result => {
         console.log("Fetched todos:", result.data);
         setTodos(result.data);
@@ -21,11 +23,11 @@ function Home() {
 
   const handleClick = (type, id) => {
     if (type === 'icon') {
-      axios.put(`http://localhost:3001/update/${id}`)
+      axios.put(`${target}/update/${id}`)
         .then(() => window.location.reload())
         .catch(err => console.log(err));
     } else if (type === 'trash-icon') {
-      axios.delete(`http://localhost:3001/delete/${id}`)
+      axios.delete(`${target}/delete/${id}`)
         .then(() => window.location.reload())
         .catch(err => console.log(err));
     }
@@ -50,6 +52,7 @@ function Home() {
         setIsEditing={setIsEditing}
         setEditId={setEditId}
         setEditTask={setEditTask}
+        target={target}
       />
 
       {
